@@ -1,8 +1,15 @@
 <?php
+//
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//header('Content-Type: text/html; charset=utf-8');
+////header('Content-Type: application/json');
+
+
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
-//require __DIR__.'/../app/Controllers/Controller.php';
+require_once __DIR__ . '/../routes/api.php';
 
-$controller = new \App\Controllers\Controller();
-//$controller->index();
-echo  '465456465465465456';
+use App\App;
+
+(new App())->run();
