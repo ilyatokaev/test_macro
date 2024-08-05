@@ -16,4 +16,16 @@ class Controller extends AbstractController
         print_r($this->params);
     }
 
+    public function showSingle(array $params)
+    {
+        echo date('Y-m-d H:i:s ') . 'Готово в контроллере showSingle';
+        print_r($params);
+    }
+
+    public function showDouble(array $params)
+    {
+        echo date('Y-m-d H:i:s ') . 'Готово в контроллере showSingle';
+        print_r($params);
+    }
+
 }
