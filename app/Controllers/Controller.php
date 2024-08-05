@@ -28,4 +28,10 @@ class Controller extends AbstractController
         print_r($params);
     }
 
+    public function showPost()
+    {
+        echo date('Y-m-d H:i:s ') . 'Готово в контроллере showPost';
+
+    }
+
 }

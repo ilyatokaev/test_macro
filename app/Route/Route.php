@@ -23,6 +23,7 @@ class Route
      * @param string $controllerClassName
      * @param string $actionMethodName
      * @return void
+     * @throws \Exception
      */
     public static function get(string $uriTemplate, string $controllerClassName, string $actionMethodName): void
     {
@@ -30,6 +31,21 @@ class Route
         $instance = new self(strtolower($uriTemplate), $controller, $actionMethodName);
         $router = Router::getInstance();
         $router->addGet($instance);
+    }
+
+    /**
+     * @param string $uriTemplate
+     * @param string $controllerClassName
+     * @param string $actionMethodName
+     * @return void
+     * @throws \Exception
+     */
+    public static function post(string $uriTemplate, string $controllerClassName, string $actionMethodName): void
+    {
+        $controller = new $controllerClassName($_POST);
+        $instance = new self(strtolower($uriTemplate), $controller, $actionMethodName);
+        $router = Router::getInstance();
+        $router->addPost($instance);
     }
 
 
