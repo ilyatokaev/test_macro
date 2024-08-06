@@ -113,9 +113,8 @@ final class Router
 
         $controllerMethod = $route->actionControllerMethod;
 
-        // корневой uri рассматриваем отдельно
+        // корневой uri рассматриваем отдельно, обособлено
         if ($route->uriTemplate === '/' && $_SERVER['REQUEST_URI'] === '/'){
-
             return $route->controller->$controllerMethod();
         }
 
@@ -130,7 +129,6 @@ final class Router
             &&
             $clearUriTemplate === $clearUriRequest
         ) {
-
             return $route->controller->$controllerMethod();
         }
 
@@ -144,7 +142,6 @@ final class Router
 
             // В uri запроса нет соответствующего компонента. Значит роут не подошел
             if (!isset($uriRequestArray[$key])){
-
                 throw new \Exception("Роут не подошел", 601);
             }
 
@@ -155,8 +152,6 @@ final class Router
             }
 
             if ($templateItem !== $uriRequestArray[$key]) {
-
-
                 throw new \Exception("Роут не подошел", 601);
             }
 
@@ -164,7 +159,6 @@ final class Router
 
         // Роут в запросе длиннее, чем шаблоне роутера. Значит, не подошел
         if (isset($uriRequestArray[$key + 1])) {
-
             throw new \Exception("Роут не подошел", 601);
         }
 
