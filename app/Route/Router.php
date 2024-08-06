@@ -7,8 +7,7 @@ final class Router
 
     private static ?self $singletonSelfInstance = null;
 
-    public array $getRoutes = [];
-//    private array $getRoutes = [];
+    private array $getRoutes = [];
     private array $postRoutes = [];
     private array $patchRoutes = [];
     private array $deleteRoutes = [];
