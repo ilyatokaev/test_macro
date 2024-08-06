@@ -113,7 +113,7 @@ final class Router
         $controllerMethod = $route->actionControllerMethod;
 
         // корневой uri рассматриваем отдельно, обособлено
-        if ($route->uriTemplate === '/' && $_SERVER['REQUEST_URI'] === '/'){
+        if ($route->uriTemplate === '/' && $_SERVER['REQUEST_URI'] === '/') {
             return $route->controller->$controllerMethod();
         }
 
@@ -124,7 +124,7 @@ final class Router
 
         // шаблон роута не содержит параметров и полностью совпадает с REQUEST_URI запроса
         if (
-            ( !str_contains($clearUriTemplate, '{') || !str_contains($clearUriTemplate, '}') )
+            (!str_contains($clearUriTemplate, '{') || !str_contains($clearUriTemplate, '}'))
             &&
             $clearUriTemplate === $clearUriRequest
         ) {
@@ -137,10 +137,10 @@ final class Router
         $uriParams = []; // массив параметров, включенных в uri
         $pattern = '/(^\{)(.*)(\}$)/';
 
-        foreach ($uriTemplateArray as $key => $templateItem){
+        foreach ($uriTemplateArray as $key => $templateItem) {
 
             // В uri запроса нет соответствующего компонента. Значит роут не подошел
-            if (!isset($uriRequestArray[$key])){
+            if (!isset($uriRequestArray[$key])) {
                 throw new \Exception("Роут не подошел", 601);
             }
 
