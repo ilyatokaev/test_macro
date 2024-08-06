@@ -16,7 +16,8 @@ class Route
         public readonly string $uriTemplate,
         public readonly ControllerInterface $controller,
         public readonly string $actionControllerMethod
-    ){}
+    ) {
+    }
 
     /**
      * @param string $uriTemplate
@@ -33,6 +34,7 @@ class Route
         $router->addGet($instance);
     }
 
+
     /**
      * @param string $uriTemplate
      * @param string $controllerClassName
@@ -46,6 +48,38 @@ class Route
         $instance = new self(strtolower($uriTemplate), $controller, $actionMethodName);
         $router = Router::getInstance();
         $router->addPost($instance);
+    }
+
+
+    /**
+     * @param string $uriTemplate
+     * @param string $controllerClassName
+     * @param string $actionMethodName
+     * @return void
+     * @throws \Exception
+     */
+    public static function delete(string $uriTemplate, string $controllerClassName, string $actionMethodName): void
+    {
+        $controller = new $controllerClassName($_REQUEST);
+        $instance = new self(strtolower($uriTemplate), $controller, $actionMethodName);
+        $router = Router::getInstance();
+        $router->addDelete($instance);
+    }
+
+
+    /**
+     * @param string $uriTemplate
+     * @param string $controllerClassName
+     * @param string $actionMethodName
+     * @return void
+     * @throws \Exception
+     */
+    public static function patch(string $uriTemplate, string $controllerClassName, string $actionMethodName): void
+    {
+        $controller = new $controllerClassName($_REQUEST);
+        $instance = new self(strtolower($uriTemplate), $controller, $actionMethodName);
+        $router = Router::getInstance();
+        $router->addPatch($instance);
     }
 
 

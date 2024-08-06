@@ -71,6 +71,42 @@ final class Router
 
 
     /**
+     * @param Route $route
+     * @return void
+     * @throws \Exception
+     */
+    public function addPatch(Route $route): void
+    {
+        $requestMethod = 'PATCH';
+        $hashKey = hash('md5', $requestMethod . strtolower($route->uriTemplate));
+
+        if (isset($this->patchRoutes[$hashKey])) {
+            throw new \Exception('Duplicate ' . $requestMethod . ' route ' . $route->uriTemplate);
+        }
+
+        $this->patchRoutes[$hashKey] = $route;
+    }
+
+
+    /**
+     * @param Route $route
+     * @return void
+     * @throws \Exception
+     */
+    public function addDelete(Route $route): void
+    {
+        $requestMethod = 'PATCH';
+        $hashKey = hash('md5', $requestMethod . strtolower($route->uriTemplate));
+
+        if (isset($this->deleteRoutes[$hashKey])) {
+            throw new \Exception('Duplicate ' . $requestMethod . ' route ' . $route->uriTemplate);
+        }
+
+        $this->deleteRoutes[$hashKey] = $route;
+    }
+
+
+    /**
      * @return mixed
      * @throws \Exception
      */
