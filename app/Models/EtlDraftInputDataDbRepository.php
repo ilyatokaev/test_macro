@@ -49,7 +49,7 @@ class EtlDraftInputDataDbRepository extends AbstractDbRepository
 
 
         foreach ($collection as $row) {
-print_r($row);
+
             $sql = 'insert into ' .  self::getDbTable() . ' ';
             $setString = null;
 
@@ -66,8 +66,6 @@ print_r($row);
             }
 
             $sql .= $setString . ", extract_session_id = {$etlSession->getId()};";
-//print_r($collection);
-echo $sql;
             $st = DbService::getDB()->prepare($sql);
 
             foreach ($row as $key => $value) {
