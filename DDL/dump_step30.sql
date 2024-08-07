@@ -5,7 +5,6 @@ CREATE TABLE `etl_draft_input_data` (
     `parse_status` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `agency_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `manager_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `contact_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `contact_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `contact_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `estate_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

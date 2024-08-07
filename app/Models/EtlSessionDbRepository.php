@@ -11,12 +11,6 @@ class EtlSessionDbRepository extends AbstractDbRepository
     protected static string $dbTable = 'etl_sessions';
 
 
-    protected static function defineStoredProperties(EtlSession $etlSession)
-    {
-        // TODO: Implement defineStoredProperties() method.
-    }
-
-
     public static function all(): ?array
     {
         // TODO: Implement all() method.

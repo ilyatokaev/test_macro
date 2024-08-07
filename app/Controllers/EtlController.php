@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\EtlDraftInputData;
 use App\Models\EtlSession;
 use App\Models\EtlSessionDbRepository;
 use App\Models\ExcelDataSource;
@@ -20,12 +21,14 @@ class EtlController extends AbstractController
         }
 
         $etlSession = new EtlSession('etl');
-        $result = EtlSessionDbRepository::save($etlSession);
+        EtlSessionDbRepository::save($etlSession);
 
-//        $result = $dataSource->readDraftData();
+        $draftData = $dataSource->readDraftData();
 
         echo '<pre>';
-        print_r($result);
+//        print_r($draftData);
+
+        EtlDraftInputData::makeCollectionFromDraftData($draftData, $etlSession);
     }
 
 }
