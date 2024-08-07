@@ -14,10 +14,15 @@ class ExcelDataSource  extends AbstractDataSource
 
 
     /**
-     * @return ?Spreadsheet
+     * @return ?array
      */
-    public function readDraftData(): ?Spreadsheet
+    public function readDraftData()
     {
-        return IOFactory::load($this->fileName);
+
+        $reader = IOFactory::createReader('Xlsx');
+        $data = $reader->setReadDataOnly(true)->load($this->fileName);
+
+        return $data->getSheet($data->getFirstSheetIndex())->toArray();
+
     }
 }

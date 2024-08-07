@@ -1,8 +1,8 @@
 <?php
 echo '<pre>';
 
-///var/www/input_files/estate.xlsx
-App\Route\Route::get('/etl/extract/excel', \App\Controllers\EtlController::class, 'extractFromExcel');
+
+App\Route\Route::get('/etl/extract/excel/seed', \App\Controllers\EtlController::class, 'extractFromExcelForSeed');
 
 App\Route\Route::get('/', \App\Controllers\Controller::class, 'index');
 App\Route\Route::get('show', \App\Controllers\Controller::class, 'show');

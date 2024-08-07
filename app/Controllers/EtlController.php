@@ -8,17 +8,16 @@ use App\Models\DataSourceInterface;
 class EtlController extends AbstractController
 {
 
-    public function extractFromExcel()
+    public function extractFromExcelForSeed()
     {
-echo $this->params['file_name'];
-die('ok');
-        if (!isset($this->params['file_name'])) {
-            throw new \Exception('undefined file_name param');
-        }
 
-        $dataSource = new ExcelDataSource(fileName: $this->params['file_name']);
+        // todo Вхардкодил для отладки. На бою использовать передачу имени файла в параметре запроса file_name
+//        $dataSource = new ExcelDataSource(fileName: $this->params['file_name']);
+        $dataSource = new ExcelDataSource(fileName: '/var/www/input_files/estate.xlsx');
 
         $result = $dataSource->readDraftData();
+
+        echo '<pre>';
         print_r($result);
     }
 
