@@ -2,6 +2,9 @@
 //echo '<pre>';
 
 //print_r($_SERVER);
+App\Route\Route::get('/initdb', \App\Controllers\DdlController::class, 'initDb');
+
+
 App\Route\Route::get('/etl/extract/excel/seed', \App\Controllers\EtlController::class, 'extractFromExcelForSeed');
 App\Route\Route::get('/etl/extract/excel/update', \App\Controllers\EtlController::class, 'extractFromExcelForUpdate');
 

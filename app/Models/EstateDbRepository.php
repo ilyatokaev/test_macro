@@ -11,7 +11,6 @@ class EstateDbRepository extends AbstractDbRepository
     protected static string $dbTable = 'estate';
 
     protected static array $filterAttributes = [
-        'agency_id' => PDO::PARAM_INT,
         'contact_id' => PDO::PARAM_INT,
         'manager_id' => PDO::PARAM_INT,
     ];
