@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AgencyDbRepository;
 use App\Models\ContactDbRepository;
+use App\Models\EstateDbRepository;
 use App\Models\EtlDraftInputData;
 use App\Models\EtlDraftInputDataDbRepository;
 use App\Models\EtlSession;
@@ -36,6 +37,7 @@ class EtlController extends AbstractController
         AgencyDbRepository::loadNewFromEtlDraftInputData();
         ContactDbRepository::loadNewFromEtlDraftInputData();
         ManagerDbRepository::loadNewFromEtlDraftInputData();
+        EstateDbRepository::loadNewFromEtlDraftInputData();
     }
 
 }
