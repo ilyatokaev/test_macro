@@ -10,6 +10,7 @@ use App\Models\EtlSession;
 use App\Models\EtlSessionDbRepository;
 use App\Models\ExcelDataSource;
 use App\Models\DataSourceInterface;
+use App\Models\ManagerDbRepository;
 
 class EtlController extends AbstractController
 {
@@ -34,6 +35,7 @@ class EtlController extends AbstractController
 
         AgencyDbRepository::loadNewFromEtlDraftInputData();
         ContactDbRepository::loadNewFromEtlDraftInputData();
+        ManagerDbRepository::loadNewFromEtlDraftInputData();
     }
 
 }
