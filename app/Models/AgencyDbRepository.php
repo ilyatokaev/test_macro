@@ -7,6 +7,8 @@ use App\Services\DbService;
 class AgencyDbRepository extends AbstractDbRepository
 {
 
+    protected static string $dbTable = 'agency';
+
     public static function saveNewInstance(ModelInterface $model): ModelInterface
     {
         // TODO: Implement saveNewInstance() method.
@@ -15,11 +17,6 @@ class AgencyDbRepository extends AbstractDbRepository
     public static function updateInstance(ModelInterface $model): ModelInterface
     {
         // TODO: Implement updateInstance() method.
-    }
-
-    public static function all(): ?array
-    {
-        // TODO: Implement all() method.
     }
 
     public static function loadNewFromEtlDraftInputData()

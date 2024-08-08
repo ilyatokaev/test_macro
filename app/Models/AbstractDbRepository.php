@@ -3,6 +3,8 @@
 namespace App\Models;
 
 
+use App\Services\DbService;
+
 abstract class AbstractDbRepository implements RepositoryInterface
 {
 
@@ -44,5 +46,13 @@ abstract class AbstractDbRepository implements RepositoryInterface
     public static function getDbTable(): string
     {
         return static::$dbTable;
+    }
+
+
+    public static function all(): ?array
+    {
+        $result = DbService::getDB()->query('select * from ' . static::getDbTable());
+
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
