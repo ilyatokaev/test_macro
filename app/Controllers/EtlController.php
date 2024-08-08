@@ -7,6 +7,8 @@ use App\Models\ContactDbRepository;
 use App\Models\EstateDbRepository;
 use App\Models\EtlDraftInputDataForSeed;
 use App\Models\EtlDraftInputDataDbRepository;
+use App\Models\EtlDraftInputDataForUpdate;
+use App\Models\EtlDraftInputDataForUpdateDbRepository;
 use App\Models\EtlSession;
 use App\Models\EtlSessionDbRepository;
 use App\Models\ExcelDataSource;
@@ -34,12 +36,13 @@ class EtlController extends AbstractController
         $forInsertArray = EtlDraftInputDataForSeed::makeCollectionFromDraftData($draftData);
 
         EtlDraftInputDataDbRepository::seedFromCollection($forInsertArray, $etlSession);
-        echo date('Y-m-d H:i:s ') . 'done';
 
         AgencyDbRepository::loadNewFromEtlDraftInputData();
         ContactDbRepository::loadNewFromEtlDraftInputData();
         ManagerDbRepository::loadNewFromEtlDraftInputData();
         EstateDbRepository::loadNewFromEtlDraftInputData();
+
+        echo date('Y-m-d H:i:s ') . 'done seeder';
     }
 
 
@@ -54,6 +57,9 @@ class EtlController extends AbstractController
         $etlSession = new EtlSession('etl');
         EtlSessionDbRepository::save($etlSession);
         $draftData = $dataSource->readDraftData();
+        $forUpdateArray = EtlDraftInputDataForUpdate::makeCollectionFromDraftData($draftData);
+        EtlDraftInputDataForUpdateDbRepository::seedFromCollection($forUpdateArray, $etlSession);
 
+        echo date('Y-m-d H:i:s ') . 'done updater';
     }
 }
