@@ -69,6 +69,7 @@ abstract class AbstractDbRepository implements RepositoryInterface
      */
     public static function filter(array $params)
     {
+
         $filterAttribute = static::getFilterAttributes();
         $whereString = self::generateWhereStringByArray($filterAttribute, $params);
         $sql = 'select * from ' . static::getDbTable() . " where {$whereString}";
@@ -116,4 +117,25 @@ abstract class AbstractDbRepository implements RepositoryInterface
 
         return $resultString ?? 'FALSE';
     }
+
+
+    /**
+     * @param ModelInterface $model
+     * @return ModelInterface
+     */
+    public static function saveNewInstance(ModelInterface $model): ModelInterface
+    {
+        // TODO: Implement saveNewInstance() method.
+    }
+
+    /**
+     * @param ModelInterface $model
+     * @return ModelInterface
+     */
+    public static function updateInstance(ModelInterface $model): ModelInterface
+    {
+        // TODO: Implement updateInstance() method.
+    }
+
+
 }

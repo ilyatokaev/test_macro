@@ -11,11 +11,6 @@ class EtlDraftInputDataDbRepository extends AbstractDbRepository
     protected static string $dbTable = 'etl_draft_input_data';
 
 
-    public static function all(): ?array
-    {
-        // TODO: Implement all() method.
-    }
-
     /**
      * @param ModelInterface|EtlSession $model
      * @return EtlSession
@@ -36,14 +31,11 @@ class EtlDraftInputDataDbRepository extends AbstractDbRepository
 
     }
 
-
-
-    public static function updateInstance(ModelInterface $model): EtlSession
-    {
-        // TODO: Implement updateInstance() method.
-    }
-
-
+    /**
+     * @param array $collection
+     * @param EtlSession $etlSession
+     * @return void
+     */
     public static function seedFromCollection(array $collection, EtlSession $etlSession)
     {
 

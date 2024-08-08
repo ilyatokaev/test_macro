@@ -11,11 +11,6 @@ class EtlSessionDbRepository extends AbstractDbRepository
     protected static string $dbTable = 'etl_sessions';
 
 
-    public static function all(): ?array
-    {
-        // TODO: Implement all() method.
-    }
-
     /**
      * @param ModelInterface|EtlSession $model
      * @return EtlSession
@@ -36,11 +31,5 @@ class EtlSessionDbRepository extends AbstractDbRepository
 
     }
 
-
-
-    public static function updateInstance(ModelInterface $model): EtlSession
-    {
-        // TODO: Implement updateInstance() method.
-    }
 
 }

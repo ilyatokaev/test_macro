@@ -4,19 +4,32 @@ namespace App\Controllers;
 
 use App\Models\ContactDbRepository;
 use App\Models\Contact as Model;
-use SimpleXMLElement;
+use App\Services\Outputer;
 
 class ContactController extends AbstractController
 {
 
+    /**
+     * @return void
+     */
     public function index()
     {
-        echo json_encode(ContactDbRepository::all(), JSON_UNESCAPED_UNICODE);
+        Outputer::outputArray(ContactDbRepository::all());
     }
 
 
+    /**
+     * @return array|void
+     */
     public function filter()
     {
-        echo json_encode(Model::filter($this->params), JSON_UNESCAPED_UNICODE);
+        if (!isset($this->params['agency_id'])) {
+            return [];
+        }
+
+        Outputer::outputArray(ContactDbRepository::findByAgencyId($this->params['agency_id']));
     }
+
+
+
 }

@@ -3,28 +3,40 @@
 namespace App\Models;
 
 use App\Services\DbService;
+use PDO;
 
 class EstateDbRepository extends AbstractDbRepository
 {
 
-    public static function saveNewInstance(ModelInterface $model): ModelInterface
-    {
-        // TODO: Implement saveNewInstance() method.
-    }
+    protected static string $dbTable = 'estate';
 
-    public static function updateInstance(ModelInterface $model): ModelInterface
-    {
-        // TODO: Implement updateInstance() method.
-    }
-
-    public static function all(): ?array
-    {
-        // TODO: Implement all() method.
-    }
+    protected static array $filterAttributes = [
+        'agency_id' => PDO::PARAM_INT,
+        'contact_id' => PDO::PARAM_INT,
+        'manager_id' => PDO::PARAM_INT,
+    ];
 
     public static function loadNewFromEtlDraftInputData()
     {
         $sql = file_get_contents(__DIR__ . '/SQL/load_from_draft_to_estate.sql');
         DbService::getDB()->query($sql);
+    }
+
+
+    /**
+     * @return array|false
+     */
+    public static function findWithAgencyId(int $agencyId): bool|array
+    {
+
+        $sql = 'select distinct e.* from ' . self::getDbTable() . ' e'
+            . ' inner join manager m on m.id = e.manager_id and m.agency_id = :agency_id';
+
+        $st = DbService::getDB()->prepare($sql);
+        $st->bindParam(':agency_id', $agencyId, PDO::PARAM_INT);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+
     }
 }

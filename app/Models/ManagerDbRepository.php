@@ -3,27 +3,19 @@
 namespace App\Models;
 
 use App\Services\DbService;
+use PDO;
 
 class ManagerDbRepository extends AbstractDbRepository
 {
 
-    public static function saveNewInstance(ModelInterface $model): ModelInterface
-    {
-        // TODO: Implement saveNewInstance() method.
-    }
+    protected static string $dbTable = 'manager';
+    protected static array $filterAttributes = ['agency_id' => PDO::PARAM_INT];
 
-    public static function updateInstance(ModelInterface $model): ModelInterface
-    {
-        // TODO: Implement updateInstance() method.
-    }
-
-    public static function all(): ?array
-    {
-        // TODO: Implement all() method.
-    }
-
-    public static function loadNewFromEtlDraftInputData()
-    {
+    /**
+     * @return void
+     */
+   public static function loadNewFromEtlDraftInputData(): void
+   {
         $sql = file_get_contents(__DIR__ . '/SQL/load_from_draft_to_manager.sql');
         DbService::getDB()->query($sql);
     }

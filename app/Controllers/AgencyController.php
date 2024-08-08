@@ -3,13 +3,14 @@
 namespace App\Controllers;
 
 use App\Models\AgencyDbRepository;
+use App\Services\Outputer;
 
 class AgencyController extends AbstractController
 {
 
     public function index()
     {
-        echo json_encode(AgencyDbRepository::all(), JSON_UNESCAPED_UNICODE);
+        Outputer::outputArray(AgencyDbRepository::all());
     }
 
 }
