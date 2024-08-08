@@ -43,27 +43,27 @@ class EtlDraftInputDataDbRepository extends AbstractDbRepository
         // TODO: Implement updateInstance() method.
     }
 
+
     public static function seedFromCollection(array $collection, EtlSession $etlSession)
     {
-
-
 
         foreach ($collection as $row) {
 
             $sql = 'insert into ' .  self::getDbTable() . ' ';
             $setString = null;
 
+
             foreach ($row as $key => $value) {
+
                 if (!isset($setString)) {
                     $setString = 'set ';
                 } else {
                     $setString .= ', ';
                 }
 
-//                $setString .= "{$key} = '{$value}'";
                 $setString .= "{$key} = :{$key}";
-
             }
+
 
             $sql .= $setString . ", extract_session_id = {$etlSession->getId()};";
             $st = DbService::getDB()->prepare($sql);
@@ -72,14 +72,15 @@ class EtlDraftInputDataDbRepository extends AbstractDbRepository
 
                 if ($key === 'estate_price') {
                     $newValue = (int) preg_replace("/[^0-9]/", '', $value);
-                    $st->bindParam(":{$key}", $newValue, PDO::PARAM_INT);
+                    $st->bindValue(":{$key}", $newValue, PDO::PARAM_INT);
                 } else {
-                    $st->bindParam(":{$key}", $value, PDO::PARAM_STR);
+                    $st->bindValue(":{$key}", $value);
                 }
 
             }
 
             $st->execute();
+
         }
 
         echo date('Y-m-d H:i:s ') . 'dddddd';

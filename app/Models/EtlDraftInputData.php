@@ -8,15 +8,14 @@ class EtlDraftInputData extends AbstractModel
 
     /**
      * @param array $draftData
-     * @return void
+     * @return array
      */
-    public static function makeCollectionFromDraftData(array $draftData, EtlSession $etlSession)
+    public static function makeCollectionFromDraftData(array $draftData): array
     {
 
         if (!isset($draftData[0][0])) {
-            return;
+            return [];
         }
-
 
         // позже, можно будет доработать, и использовать этот массив для реализации защиты от изменения порядка колонок
         $attributesTemplate = [
@@ -33,8 +32,8 @@ class EtlDraftInputData extends AbstractModel
             10 => ['source_name' => 'Комнат',                'attribute_name' => 'estate_rooms']
         ];
 
-
         $forInsertArray = [];
+
 
         foreach ($draftData as $draftDatumKey => $draftDatum) {
 
@@ -42,8 +41,6 @@ class EtlDraftInputData extends AbstractModel
             if ($draftDatumKey === 0) {
                 continue;
             }
-
-            $instance = new self();
 
             $currentRow = [];
             foreach ($attributesTemplate as $attributeKey => $attribute) {
@@ -54,9 +51,7 @@ class EtlDraftInputData extends AbstractModel
 
         }
 
-        EtlDraftInputDataDbRepository::seedFromCollection($forInsertArray, $etlSession);
-        echo date('Y-m-d H:i:s ') . 'done';
-
+        return $forInsertArray;
     }
     
 }

@@ -2,21 +2,21 @@ ALTER TABLE `agency`
     ADD COLUMN `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     ADD COLUMN `updated_at` DATETIME NULL AFTER `created_at`,
     ADD COLUMN `last_etl_session_id` BIGINT NULL AFTER `updated_at`,
-    ADD COLUMN `data_source_id` BIGINT NOT NULL AFTER `last_etl_session_id`,
+    ADD COLUMN `data_source_id` BIGINT DEFAULT NULL AFTER `last_etl_session_id`,
     ADD COLUMN `source_instance_code` VARCHAR(255) NULL;
 
 ALTER TABLE `contacts`
     ADD COLUMN `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     ADD COLUMN `updated_at` DATETIME NULL AFTER `created_at`,
     ADD COLUMN `last_etl_session_id` BIGINT NULL AFTER `updated_at`,
-    ADD COLUMN `data_source_id` BIGINT NOT NULL AFTER `last_etl_session_id`,
+    ADD COLUMN `data_source_id` BIGINT DEFAULT NULL AFTER `last_etl_session_id`,
     ADD COLUMN `source_instance_code` VARCHAR(255) NULL;
 
 ALTER TABLE `estate`
     ADD COLUMN `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     ADD COLUMN `updated_at` DATETIME NULL AFTER `created_at`,
     ADD COLUMN `last_etl_session_id` BIGINT NULL AFTER `updated_at`,
-    ADD COLUMN `data_source_id` BIGINT NOT NULL AFTER `last_etl_session_id`,
+    ADD COLUMN `data_source_id` BIGINT DEFAULT NULL AFTER `last_etl_session_id`,
     ADD COLUMN `source_instance_code` VARCHAR(255) NULL;
 
 
@@ -24,7 +24,7 @@ ALTER TABLE `manager`
     ADD COLUMN `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     ADD COLUMN `updated_at` DATETIME NULL AFTER `created_at`,
     ADD COLUMN `last_etl_session_id` BIGINT NULL AFTER `updated_at`,
-    ADD COLUMN `data_source_id` BIGINT NOT NULL AFTER `last_etl_session_id`,
+    ADD COLUMN `data_source_id` BIGINT DEFAULT NULL AFTER `last_etl_session_id`,
     ADD COLUMN `source_instance_code` VARCHAR(255) NULL;
 
 ALTER TABLE `agency`

@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\AgencyDbRepository;
 use App\Models\EtlDraftInputData;
+use App\Models\EtlDraftInputDataDbRepository;
 use App\Models\EtlSession;
 use App\Models\EtlSessionDbRepository;
 use App\Models\ExcelDataSource;
@@ -20,15 +22,16 @@ class EtlController extends AbstractController
             $dataSource = new ExcelDataSource(fileName: '/var/www/input_files/estate.xlsx');
         }
 
+        // Загрузка из источника в транзитную таблицу
         $etlSession = new EtlSession('etl');
         EtlSessionDbRepository::save($etlSession);
-
         $draftData = $dataSource->readDraftData();
+        $forInsertArray = EtlDraftInputData::makeCollectionFromDraftData($draftData);
 
-        echo '<pre>';
-//        print_r($draftData);
+        EtlDraftInputDataDbRepository::seedFromCollection($forInsertArray, $etlSession);
+        echo date('Y-m-d H:i:s ') . 'done';
 
-        EtlDraftInputData::makeCollectionFromDraftData($draftData, $etlSession);
+        AgencyDbRepository::loadNewFromEtlDraftInputData();
     }
 
 }
