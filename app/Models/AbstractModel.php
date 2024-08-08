@@ -31,7 +31,7 @@ abstract class AbstractModel implements ModelInterface
      * @param array $params
      * @return mixed
      */
-    public static function filter(array $params)
+    public static function filter(array $params): mixed
     {
         return static::$repositoryClass::filter($params);
     }

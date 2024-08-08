@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `etl_draft_input_data`;
-CREATE TABLE `etl_draft_input_data` (
+DROP TABLE IF EXISTS `etl_draft_input_data_for_update`;
+CREATE TABLE `etl_draft_input_data_for_update` (
     `id` int NOT NULL AUTO_INCREMENT,
     `extract_session_id` bigint NOT NULL,
     `parse_status` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -18,8 +18,8 @@ CREATE TABLE `etl_draft_input_data` (
     `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `transform_session_id` bigint DEFAULT NULL,
     PRIMARY KEY (`id`),
-    KEY `etl_draft_input_data_fk_transform_session_id_idx` (`transform_session_id`),
-    KEY `etl_draft_input_data_fk_extract_session_id_idx` (`extract_session_id`),
-    CONSTRAINT `etl_draft_input_data_fk_extract_session_id` FOREIGN KEY (`extract_session_id`) REFERENCES `etl_sessions` (`id`),
-    CONSTRAINT `etl_draft_input_data_fk_transform_session_id` FOREIGN KEY (`transform_session_id`) REFERENCES `etl_sessions` (`id`)
+    KEY `etl_draft_input_data_for_update_fk_transform_session_id_idx` (`transform_session_id`),
+    KEY `etl_draft_input_data_for_update_fk_extract_session_id_idx` (`extract_session_id`),
+    CONSTRAINT `etl_draft_input_data_for_update_fk_extract_session_id` FOREIGN KEY (`extract_session_id`) REFERENCES `etl_sessions` (`id`),
+    CONSTRAINT `etl_draft_input_data_for_update_fk_transform_session_id` FOREIGN KEY (`transform_session_id`) REFERENCES `etl_sessions` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci

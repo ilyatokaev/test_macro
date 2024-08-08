@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class EtlDraftInputData extends AbstractModel
+class AbstractEtlDraftInputData extends AbstractModel
 {
 
 

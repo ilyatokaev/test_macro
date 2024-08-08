@@ -15,34 +15,3 @@ CREATE TABLE `etl_sessions` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
-DROP TABLE IF EXISTS `data_sources`;
-CREATE TABLE `data_sources` (
-    `id` bigint NOT NULL AUTO_INCREMENT,
-    `code` VARCHAR(255) NULL,
-    `name` VARCHAR(255) NULL,
-    `description` TEXT NULL,
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-DROP TABLE IF EXISTS `etl_handled_files`;
-CREATE TABLE `etl_handled_files` (
-    `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `data_source_id` BIGINT NOT NULL,
-    `source_file_name` VARCHAR(255) NULL,
-    `source_file_hash` VARCHAR(255) NULL,
-    `target_file_name` VARCHAR(255) NULL,
-    `etl_session_id` BIGINT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `fk_etl_handlers_files_etl_session_id_idx` (`etl_session_id` ASC) VISIBLE,
-    CONSTRAINT `fk_etl_handled_files_data_source_id`
-        FOREIGN KEY (`data_source_id`)
-            REFERENCES `data_sources` (`id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION,
-    CONSTRAINT `fk_etl_handlers_files_etl_session_id`
-        FOREIGN KEY (`etl_session_id`)
-            REFERENCES `etl_sessions` (`id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION);

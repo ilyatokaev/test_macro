@@ -5,12 +5,11 @@ namespace App\Controllers;
 use App\Models\AgencyDbRepository;
 use App\Models\ContactDbRepository;
 use App\Models\EstateDbRepository;
-use App\Models\EtlDraftInputData;
+use App\Models\EtlDraftInputDataForSeed;
 use App\Models\EtlDraftInputDataDbRepository;
 use App\Models\EtlSession;
 use App\Models\EtlSessionDbRepository;
 use App\Models\ExcelDataSource;
-use App\Models\DataSourceInterface;
 use App\Models\ManagerDbRepository;
 
 class EtlController extends AbstractController
@@ -32,7 +31,7 @@ class EtlController extends AbstractController
         $etlSession = new EtlSession('etl');
         EtlSessionDbRepository::save($etlSession);
         $draftData = $dataSource->readDraftData();
-        $forInsertArray = EtlDraftInputData::makeCollectionFromDraftData($draftData);
+        $forInsertArray = EtlDraftInputDataForSeed::makeCollectionFromDraftData($draftData);
 
         EtlDraftInputDataDbRepository::seedFromCollection($forInsertArray, $etlSession);
         echo date('Y-m-d H:i:s ') . 'done';
@@ -43,4 +42,18 @@ class EtlController extends AbstractController
         EstateDbRepository::loadNewFromEtlDraftInputData();
     }
 
+
+    public function extractFromExcelForUpdate(): void
+    {
+        if (isset($this->params['update_file_name'])) {
+            $dataSource = new ExcelDataSource(fileName: $this->params['update_file_name']);
+        } else {
+            $dataSource = new ExcelDataSource(fileName: '/var/www/input_files/estate_update.xlsx');
+        }
+
+        $etlSession = new EtlSession('etl');
+        EtlSessionDbRepository::save($etlSession);
+        $draftData = $dataSource->readDraftData();
+
+    }
 }

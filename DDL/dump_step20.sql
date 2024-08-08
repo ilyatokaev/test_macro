@@ -80,10 +80,10 @@ ALTER TABLE `manager`
 ;
 
 ALTER TABLE `agency`
-    ADD UNIQUE INDEX `agency_unique_source_instance_code` USING BTREE (`data_source_id`, `source_instance_code`) VISIBLE;
+    ADD UNIQUE INDEX `agency_unique_source_instance_code` USING BTREE (`source_instance_code`) VISIBLE;
 ALTER TABLE `contacts`
-    ADD UNIQUE INDEX `contacts_unique_source_instance_code` USING BTREE (`data_source_id`, `source_instance_code`) VISIBLE;
+    ADD UNIQUE INDEX `contacts_unique_source_instance_code` USING BTREE (`source_instance_code`) VISIBLE;
 ALTER TABLE `estate`
-    ADD UNIQUE INDEX `estate_unique_source_instance_code` USING BTREE (`data_source_id`, `source_instance_code`) VISIBLE;
+    ADD UNIQUE INDEX `estate_unique_source_instance_code` USING BTREE (`source_instance_code`) VISIBLE;
 ALTER TABLE `manager`
-    ADD UNIQUE INDEX `manager_unique_source_instance_code` USING BTREE (`data_source_id`, `source_instance_code`, `agency_id`) VISIBLE;
+    ADD UNIQUE INDEX `manager_unique_source_instance_code` USING BTREE (`source_instance_code`, `agency_id`) VISIBLE;
