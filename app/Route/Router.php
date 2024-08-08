@@ -158,6 +158,8 @@ final class Router
         $clearUriRequest = preg_replace($pattern, '', strtolower($_SERVER['REQUEST_URI']));
         $clearUriTemplate = preg_replace($pattern, '', $route->uriTemplate);
 
+        $clearUriRequest = explode('?', $clearUriRequest)[0];
+
         // шаблон роута не содержит параметров и полностью совпадает с REQUEST_URI запроса
         if (
             (!str_contains($clearUriTemplate, '{') || !str_contains($clearUriTemplate, '}'))

@@ -5,7 +5,7 @@ namespace App\Models;
 abstract class AbstractModel implements ModelInterface
 {
 
-    protected RepositoryInterface $repository;
+    protected static string $repositoryClass;
 
     private string $id;
 
@@ -27,6 +27,13 @@ abstract class AbstractModel implements ModelInterface
     }
 
 
-
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function filter(array $params)
+    {
+        return static::$repositoryClass::filter($params);
+    }
 
 }

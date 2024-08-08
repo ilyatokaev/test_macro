@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use App\Services\DbService;
+use PDO;
 
 class ContactDbRepository extends AbstractDbRepository
 {
+
+    protected static string $dbTable = 'contacts';
+    protected static array $filterAttributes = ['id' => PDO::PARAM_INT];
 
     public static function saveNewInstance(ModelInterface $model): ModelInterface
     {
@@ -15,11 +19,6 @@ class ContactDbRepository extends AbstractDbRepository
     public static function updateInstance(ModelInterface $model): ModelInterface
     {
         // TODO: Implement updateInstance() method.
-    }
-
-    public static function all(): ?array
-    {
-        // TODO: Implement all() method.
     }
 
     public static function loadNewFromEtlDraftInputData()
