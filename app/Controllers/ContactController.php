@@ -12,7 +12,7 @@ class ContactController extends AbstractController
     /**
      * @return void
      */
-    public function index()
+    public function index(): void
     {
         Outputer::outputArray(ContactDbRepository::all());
     }

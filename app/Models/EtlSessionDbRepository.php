@@ -13,9 +13,9 @@ class EtlSessionDbRepository extends AbstractDbRepository
 
     /**
      * @param ModelInterface|EtlSession $model
-     * @return EtlSession
+     * @return EtlSession|null
      */
-    public static function saveNewInstance(ModelInterface|EtlSession $model): EtlSession
+    public static function saveNewInstance(ModelInterface|EtlSession $model): ?EtlSession
     {
 
         $sql = 'insert into ' . self::getDbTable() . ' set type_code = :type_code';
@@ -29,6 +29,7 @@ class EtlSessionDbRepository extends AbstractDbRepository
             return $model;
         }
 
+        return null;
     }
 
 

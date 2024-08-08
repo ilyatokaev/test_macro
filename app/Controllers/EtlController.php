@@ -16,7 +16,10 @@ use App\Models\ManagerDbRepository;
 class EtlController extends AbstractController
 {
 
-    public function extractFromExcelForSeed()
+    /**
+     * @return void
+     */
+    public function extractFromExcelForSeed(): void
     {
 
         if (isset($this->params['file_name'])) {

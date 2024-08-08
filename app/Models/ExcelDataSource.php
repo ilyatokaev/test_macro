@@ -16,7 +16,7 @@ class ExcelDataSource  extends AbstractDataSource
     /**
      * @return ?array
      */
-    public function readDraftData()
+    public function readDraftData(): ?array
     {
 
         $reader = IOFactory::createReader('Xlsx');

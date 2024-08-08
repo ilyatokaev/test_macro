@@ -16,7 +16,13 @@ class EstateDbRepository extends AbstractDbRepository
         'manager_id' => PDO::PARAM_INT,
     ];
 
-    public static function loadNewFromEtlDraftInputData()
+
+    /**
+     * Импорт данных из транзитной ETL-таблицы
+     *
+     * @return void
+     */
+    public static function loadNewFromEtlDraftInputData(): void
     {
         $sql = file_get_contents(__DIR__ . '/SQL/load_from_draft_to_estate.sql');
         DbService::getDB()->query($sql);

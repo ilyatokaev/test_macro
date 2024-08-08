@@ -12,15 +12,19 @@ class ContactDbRepository extends AbstractDbRepository
 
 
     /**
+     * Импорт данных из транзитной ETL-таблицы
+     *
      * @return void
      */
-    public static function loadNewFromEtlDraftInputData()
+    public static function loadNewFromEtlDraftInputData(): void
     {
         $sql = file_get_contents(__DIR__ . '/SQL/load_from_draft_to_contacts.sql');
         DbService::getDB()->query($sql);
     }
 
     /**
+     * Кастомный поиск по агентству
+     *
      * @param int $agencyId
      * @return array|false
      */

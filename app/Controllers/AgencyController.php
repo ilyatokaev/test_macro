@@ -8,7 +8,10 @@ use App\Services\Outputer;
 class AgencyController extends AbstractController
 {
 
-    public function index()
+    /**
+     * @return void
+     */
+    public function index(): void
     {
         Outputer::outputArray(AgencyDbRepository::all());
     }

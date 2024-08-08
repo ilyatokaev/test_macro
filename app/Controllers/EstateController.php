@@ -11,16 +11,16 @@ class EstateController extends AbstractController
     /**
      * @return void
      */
-    public function index()
+    public function index(): void
     {
         Outputer::outputArray(EstateDbRepository::all());
     }
 
 
     /**
-     * @return array|void
+     * @return void
      */
-    public function filter()
+    public function filter(): void
     {
 
         if (isset($this->params['agency_id'])){

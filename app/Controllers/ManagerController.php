@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 
-use App\Models\Manager as Model;
 use App\Models\ManagerDbRepository;
 use App\Services\Outputer;
 
@@ -20,7 +19,7 @@ class ManagerController extends AbstractController
     }
 
     /**
-     * @return array|null
+     * @return void
      */
     public function filter()
     {

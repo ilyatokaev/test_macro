@@ -48,12 +48,18 @@ abstract class AbstractDbRepository implements RepositoryInterface
         return static::$dbTable;
     }
 
-    public static function getFilterAttributes()
+    /**
+     * @return array
+     */
+    public static function getFilterAttributes(): array
     {
         return static::$filterAttributes;
     }
 
 
+    /**
+     * @return array|null
+     */
     public static function all(): ?array
     {
         $result = DbService::getDB()->query('select * from ' . static::getDbTable());
@@ -63,11 +69,10 @@ abstract class AbstractDbRepository implements RepositoryInterface
 
 
     /**
-     * @param string $modelClass
      * @param array $params
      * @return array|null
      */
-    public static function filter(array $params)
+    public static function filter(array $params): ?array
     {
 
         $filterAttribute = static::getFilterAttributes();
@@ -121,9 +126,9 @@ abstract class AbstractDbRepository implements RepositoryInterface
 
     /**
      * @param ModelInterface $model
-     * @return ModelInterface
+     * @return ModelInterface|null
      */
-    public static function saveNewInstance(ModelInterface $model): ModelInterface
+    public static function saveNewInstance(ModelInterface $model): ?ModelInterface
     {
         // TODO: Implement saveNewInstance() method.
     }
