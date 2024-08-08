@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AgencyDbRepository;
+use App\Models\ContactDbRepository;
 use App\Models\EtlDraftInputData;
 use App\Models\EtlDraftInputDataDbRepository;
 use App\Models\EtlSession;
@@ -32,6 +33,7 @@ class EtlController extends AbstractController
         echo date('Y-m-d H:i:s ') . 'done';
 
         AgencyDbRepository::loadNewFromEtlDraftInputData();
+        ContactDbRepository::loadNewFromEtlDraftInputData();
     }
 
 }

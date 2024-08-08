@@ -86,4 +86,4 @@ ALTER TABLE `contacts`
 ALTER TABLE `estate`
     ADD UNIQUE INDEX `estate_unique_source_instance_code` USING BTREE (`data_source_id`, `source_instance_code`) VISIBLE;
 ALTER TABLE `manager`
-    ADD UNIQUE INDEX `manager_unique_source_instance_code` USING BTREE (`data_source_id`, `source_instance_code`) VISIBLE;
+    ADD UNIQUE INDEX `manager_unique_source_instance_code` USING BTREE (`data_source_id`, `source_instance_code`, `agency_id`) VISIBLE;
