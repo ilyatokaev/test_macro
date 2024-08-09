@@ -25,4 +25,4 @@ WORKDIR /var/www
 
 RUN composer install
 
-mkdir "input_files"
+RUN mkdir input_files
